@@ -19,7 +19,7 @@ class CreateSanPhamTable extends Migration
             $table->string('dien_giai', 255);
             $table->integer('gia');
             $table->integer('ma_loai')->unsigned()->nullable();
-            $table->binary('anh_dai_dien')->nullable();
+            $table->string('anh_dai_dien',255)->nullable();
             $table->timestamps();
             $table->foreign('ma_loai')
                 ->references('ma_loai')->on('loai_san_pham')

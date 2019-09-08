@@ -9,7 +9,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoaiSanPhamRequest;
 use DB;
 use Validator;
 use App\LoaiSanPham;
@@ -18,7 +17,7 @@ class LoaiSanPhamController extends Controller
 {
     public function index()
     {
-        $ds_loai = LoaiSanPham::paginate(1);
+        $ds_loai = LoaiSanPham::paginate(5);
 
         return view('admin.loaisp.index')
             ->with('danhsachloai', $ds_loai);

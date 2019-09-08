@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SanPham extends Model
 {
-    protected $primaryKey = 'ma_san_pham';
     protected $table = 'san_pham';
-//    public $timestamps = false;
+    protected $primaryKey = 'ma_san_pham';
+    protected $fillable     = ['ma_san_pham','ten_san_pham','dien_giai','gia','ma_loai','anh_dai_dien'];
+    protected $guarded      = ['ma_san_pham'];
     public function loaisanpham()
     {
-        return $this->belongsTo('App/Loaisanpham','ma_loai','ma_loai');
+        return $this->belongsTo('App\LoaiSanPham','ma_loai','ma_loai');
     }
 }

@@ -31,20 +31,7 @@
   <link rel="stylesheet" href="{{asset('css/custom-styles.css')}}">
   <link rel="stylesheet"
 href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyDzRXThNnMKYSVDa6DglJViyCzlWWamHLo"></script>
-<script src="{{asset('js/gmaps.js')}}"></script>
 <style type="text/css">
-.user-panel>.image>img {
-  width: 100%;
-  max-width: 150px;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-}
-#map {
-  width: 100%;
-  height: 400px;
-}
 </style>
   @yield('custom-css')
 </head>

@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class LoaiSanPham extends Model
 {
-    protected $primaryKey = 'ma_loai';
     protected $table = 'loai_san_pham';
-public function sanpham()
-{
-    return $this->hasMany('App/Sanpham','ma_loai','ma_loai');
-}
+    protected $primaryKey = 'ma_loai';
+    protected $guarded = ['ma_loai'];
+    protected $fillable     = ['ma_loai','ten_loai'];
+
+    public function sanpham()
+    {
+        return $this->hasMany('App\SanPham', 'ma_loai', 'ma_loai');
+    }
 }

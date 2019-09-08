@@ -25,6 +25,7 @@ Thêm mới loại nông sản
         <label for="ten_lsp">Tên loại</label>
         <input type="text" class="form-control" id="ten_loai" name="ten_loai" placeholder="Điền tên loại sản phẩm">
     </div>
+    <a href="{{route('danhsachloai.index')}}">  <button type="button" class="btn ">Quay lại</button></a>
     <button type="submit" class="btn btn-primary">Lưu</button>
 </div>
 </form>
