@@ -8,11 +8,12 @@
 
 namespace App\Http\Controllers;
 
+use App\HinhAnh;
 use App\LoaiSanPham;
 use App\SanPham;
-use App\HinhAnh;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Session;
 use Validator;
 
@@ -34,14 +35,60 @@ class SanPhamController extends Controller
 
     public function edit($id)
     {
+        $ds_loai = LoaiSanPham::all();
         $san_pham = SanPham::where("ma_san_pham", $id)->first();
-        return view('admin.sanpham.edit')->with('san_pham', $san_pham);
+        return view('admin.sanpham.edit')
+            ->with('san_pham', $san_pham)
+            ->with('ds_loai', $ds_loai);
 
     }
 
     public function update(Request $request, $id)
     {
 
+        $validation = $request->validate([
+            'ten_san_pham' => 'required|string',
+            'dien_giai' => 'required|string|max:4000',
+            'gia'=>'required',
+        ],[
+            'ten_san_pham.required'=>'Bạn chưa nhập tên sản phẩm',
+            'dien_giai.required'=>'Bạn chưa nhập mô tả',
+            'gia.required'=>'Bạn chưa nhập giá',
+        ]);
+
+        $san_pham = SanPham::where("ma_san_pham", $id)->first();
+
+        $san_pham->ten_san_pham=$request->ten_san_pham;
+        $san_pham->dien_giai=$request->dien_giai;
+        $san_pham->gia=$request->gia;
+        $san_pham->ma_loai=$request->ma_lsp;
+
+        if($request->hasFile('hinh_anh'))
+        {
+            Storage::delete('public/photos/' . $san_pham->anh_dai_dien);
+            $file = $request->hinh_anh;
+            $san_pham->anh_dai_dien = $file->getClientOriginalName();
+            $fileSaved = $file->storeAs('public/photos', $san_pham->anh_dai_dien);
+        }
+        if($request->hasFile('hinhanhlienquan')) {
+            foreach($san_pham->hinhAnh as $hinhAnh)
+            {
+                Storage::delete('public/photos/' . $hinhAnh->dia_chi);
+                $hinhAnh->delete();
+            }
+            $files = $request->hinhanhlienquan;
+            foreach ($request->hinhanhlienquan as $index => $file) {
+
+                $file->storeAs('public/photos', $file->getClientOriginalName());
+                $hinhAnh = new Hinhanh();
+                $hinhAnh->ma_san_pham = $san_pham->ma_san_pham;
+                $hinhAnh->dia_chi = $file->getClientOriginalName();
+                $hinhAnh->save();
+            }
+        }
+        $san_pham->save();
+        Session::flash('alert-info','Cập nhật thành công!');
+        return redirect()->route('sanpham.index');
     }
 
     /**
@@ -66,23 +113,22 @@ class SanPhamController extends Controller
         $san_pham->ten_san_pham = $request->ten_san_pham;
         $san_pham->gia = $request->gia;
         $san_pham->dien_giai = $request->dien_giai;
-        $san_pham->ma_loai= $request->ma_lsp;
+        $san_pham->ma_loai = $request->ma_lsp;
 
-        if($request->hasFile('hinh_anh'))
-        {
+        if ($request->hasFile('hinh_anh')) {
             $file = $request->hinh_anh;
             $san_pham->anh_dai_dien = $file->getClientOriginalName();
-            $fileSaved = $file->storeAs('public/photos',  $san_pham->anh_dai_dien);
+            $fileSaved = $file->storeAs('public/photos', $san_pham->anh_dai_dien);
         }
 
         $san_pham->save();
 
-        if($request->hasFile('hinhanhlienquan')) {
+        if ($request->hasFile('hinhanhlienquan')) {
             $files = $request->hinhanhlienquan;
             foreach ($request->hinhanhlienquan as $index => $file) {
                 $file->storeAs('public/photos', $file->getClientOriginalName());
                 $hinhAnh = new HinhAnh();
-                $hinhAnh->ma_san_pham =$san_pham->ma_san_pham;
+                $hinhAnh->ma_san_pham = $san_pham->ma_san_pham;
                 $hinhAnh->dia_chi = $file->getClientOriginalName();
                 $hinhAnh->save();
             }
@@ -90,13 +136,17 @@ class SanPhamController extends Controller
 
         Session::flash('alert-info', 'Thêm thành công!');
         return redirect()->route('sanpham.index');
-//        $file = $request->hinh_anh;
-//        echo "ten".$file->getClientOriginalName();
     }
 
     public function destroy($id)
     {
-        $san_pham = SanPham::where("ma_san_pham", "=", $id)->delete();
+
+        $san_pham = SanPham::where("ma_san_pham", "=", $id)->first();
+        Storage::delete('public/photos/' . $san_pham->anh_dai_dien);
+        foreach ($san_pham->hinhAnh as $hinh_anh) {
+            Storage::delete('public/photos/' . $hinh_anh->dia_chi);
+        }
+        $san_pham->delete();
         Session::flash('alert-danger', 'Xoá dữ liệu thành công!');
         return redirect()->route('sanpham.index');
     }

@@ -28,7 +28,6 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="{{asset('css/custom-styles.css')}}">
   <link rel="stylesheet"
 href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style type="text/css">
@@ -167,4 +166,11 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
      @yield('custom-scripts')
      @stack('js')
 </body>
+<style>
+    .img-list{
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
 </html>
