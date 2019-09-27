@@ -15,7 +15,7 @@ class CreateHocVienTable extends Migration
     {
         Schema::create('hoc_vien', function (Blueprint $table) {
             $table->integer('id_hoc_vien',true,true);
-            $table->string('username', 100);
+            $table->string('username', 100)->unique();
             $table->string('password', 100);
             $table->string('ho_ten', 100);
             $table->string('dia_chi', 255);

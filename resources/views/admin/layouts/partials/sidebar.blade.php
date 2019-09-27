@@ -17,7 +17,7 @@
               </a>
               <ul class="treeview-menu" style="display: {{ (request()->is('admin/taikhoan*') ? 'block' : '') }};">
                   <li class="{{ (request()->is('admin/taikhoan/giaovien*') ? 'active' : '' )}}"><a href="{{ route('giaovien.index') }}"><i class="fa fa-circle-o"></i>Giáo viên</a></li>
-                  <li class="{{ (request()->is('admin/taikhoan/hocvien*') ? 'active' : '' )}}"><a href="#"><i class="fa fa-circle-o"></i>Học viên</a></li>
+                  <li class="{{ (request()->is('admin/taikhoan/hocvien*') ? 'active' : '' )}}"><a href="{{ route('hocvien.index') }}"><i class="fa fa-circle-o"></i>Học viên</a></li>
               </ul>
           </li>
           <li class="{{(request()->is('admin/thongbao*')?'active':'')}}"><a href=""><i class="">Thông báo</i></a></li>

@@ -6,7 +6,7 @@
 
 
 @section('main-content')
-    <h3 align="center">DANH SÁCH TÀI KHOẢN GIÁO VIÊN</h3>
+    <h3 align="center">DANH SÁCH SẢN PHẨM</h3>
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
             @if(Session::has('alert-' . $msg))
@@ -14,7 +14,7 @@
             @endif
         @endforeach
     </div>
-    <a href="{{ route('giaovien.create') }}" class="btn btn-primary">Thêm</a>
+    <a href="{{ route('hocvien.create') }}" class="btn btn-primary">Thêm</a>
     <div class="box">
         <table class="table table-borderaced">
             <thead>
@@ -28,15 +28,15 @@
             </thead>
             <tbody>
 
-            @foreach($ds_gv as $gv)
+            @foreach($ds_hv as $hv)
                 <tr>
-                    <td>{{ $gv->username}}</td>
-                    <td>{{ $gv->ho_ten}}</td>
-                    <td>{{ $gv->sdt}}</td>
-                    <td>{{ $gv->dia_chi}}</td>
+                    <td>{{ $hv->username}}</td>
+                    <td>{{ $hv->ho_ten}}</td>
+                    <td>{{ $hv->sdt}}</td>
+                    <td>{{ $hv->dia_chi}}</td>
                     <td>
-                        <a href="{{ route('giaovien.edit', ['id' => $gv->id_giao_vien]) }}" class="btn btn-primary pull-left">Sửa</a></a>
-                        <form method="post" action="{{ route('giaovien.destroy', ['id' => $gv->id_giao_vien]) }}">
+                        <a href="{{ route('hocvien.edit', ['id' => $hv->id_hoc_vien]) }}" class="btn btn-primary pull-left">Sửa</a></a>
+                        <form method="post" action="{{ route('hocvien.destroy', ['id' => $hv->id_hoc_vien]) }}">
                             <input type="hidden" name="_method" value="DELETE" />
                             {{ csrf_field() }}
                             <button onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger">Xóa</button></td>
@@ -46,5 +46,5 @@
             </tbody>
         </table>
     </div>
-    {{$ds_gv->links()}}
+    {{$ds_hv->links()}}
 @endsection
