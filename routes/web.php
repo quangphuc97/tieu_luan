@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/danhsachloai','LoaiSanPhamController');
+    Route::resource('thongbao','ThongBaoController');
     Route::resource('sanpham','SanPhamController');
     Route::resource('taikhoan/giaovien','GiaoVienController');
     Route::resource('taikhoan/hocvien','HocVienController');

@@ -20,7 +20,7 @@
                   <li class="{{ (request()->is('admin/taikhoan/hocvien*') ? 'active' : '' )}}"><a href="{{ route('hocvien.index') }}"><i class="fa fa-circle-o"></i>Học viên</a></li>
               </ul>
           </li>
-          <li class="{{(request()->is('admin/thongbao*')?'active':'')}}"><a href=""><i class="">Thông báo</i></a></li>
+          <li class="{{(request()->is('admin/thongbao*')?'active':'')}}"><a href="{{ route('thongbao.index') }}"><i class="">Thông báo</i></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
