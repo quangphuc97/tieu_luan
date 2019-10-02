@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 
 @section('title')
-Thêm mới loại nông sản
+Thêm mới loại sản phẩm
 @endsection
 
 @section('main-content')

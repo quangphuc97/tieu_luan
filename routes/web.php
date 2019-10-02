@@ -25,6 +25,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('sanpham','SanPhamController');
     Route::resource('taikhoan/giaovien','GiaoVienController');
     Route::resource('taikhoan/hocvien','HocVienController');
+    Route::resource('giangday/lop','LopController');
 });
 
 //Route::get('/phuc', function () {
