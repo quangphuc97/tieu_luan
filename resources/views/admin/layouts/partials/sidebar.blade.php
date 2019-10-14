@@ -29,6 +29,7 @@
               </a>
               <ul class="treeview-menu" style="display: {{ (request()->is('admin/giangday*') ? 'block' : '') }};">
                   <li class="{{ (request()->is('admin/giangday/lop*') ? 'active' : '' )}}"><a href="{{ route('lop.index') }}"><i class="fa fa-clone"></i>Lớp học</a></li>
+                  <li class="{{ (request()->is('admin/giangday/lich*') ? 'active' : '' )}}"><a href="{{ route('lich.index') }}"><i class="fa fa-calendar"></i>Lịch dạy</a></li>
               </ul>
           </li>
           <li class="{{(request()->is('admin/thongbao*')?'active':'')}}"><a href="{{ route('thongbao.index') }}"><i class="">Thông báo</i></a></li>

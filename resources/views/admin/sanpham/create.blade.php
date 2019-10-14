@@ -35,7 +35,7 @@
                         <label for="ma_lsp">Loại Sản Phẩm</label>
                         <select name="ma_lsp" class="form-control">
                             @foreach($ds_loai as $loai)
-                                @if(old('ma_lsp')==$loai)
+                                @if(old('ma_lsp')==$loai->ma_loai)
                                     <option value="{{ $loai->ma_loai }}" selected>{{ $loai->ten_loai }}</option>
                                 @else
                                     <option value="{{ $loai->ma_loai }}" select>{{ $loai->ten_loai }}</option>

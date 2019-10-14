@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -26,6 +24,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('taikhoan/giaovien','GiaoVienController');
     Route::resource('taikhoan/hocvien','HocVienController');
     Route::resource('giangday/lop','LopController');
+    Route::resource('giangday/lich','LichController');
+//    Route::get('giangday/lich/addeventurl','LichController@display')->name('lich.addeventurl');
+//    Route::post('giangday/lich/addeventurl','LichController@guardar')->name('lich.addeventurl');
 });
 
 //Route::get('/phuc', function () {

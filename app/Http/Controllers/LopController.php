@@ -82,7 +82,7 @@ class LopController extends Controller
         ]);
         $lop = new Lop();
         $lop->ten_lop=$request->ten_lop;
-        $lop->trang_thai= Lop::$hoat_dong;
+        $lop->trang_thai= Lop::$chua_sap_lich;
         $lop->si_so= $request->si_so;
         $lop->id_giao_vien = $request->id_giao_vien;
         $lop->save();

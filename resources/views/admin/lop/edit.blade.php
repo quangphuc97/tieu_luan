@@ -45,6 +45,7 @@ Hiệu chỉnh loại
             <select name="trang_thai" class="form-control">
                     <option value="{{App\Lop::$hoat_dong}}" @if(App\Lop::$hoat_dong==$lop->trang_thai) selected @else select @endif> {{App\Lop::$hoat_dong}}</option>
                 <option value="{{App\Lop::$khong_hoat_dong}}" @if(App\Lop::$khong_hoat_dong==$lop->trang_thai) selected @else select @endif> {{App\Lop::$khong_hoat_dong}}</option>
+                <option value="{{App\Lop::$chua_sap_lich}}" @if(App\Lop::$chua_sap_lich==$lop->trang_thai) selected @else select @endif> {{App\Lop::$chua_sap_lich}}</option>
             </select>
         </div>
         <a href="{{route('lop.index')}}">  <button type="button" class="btn ">Quay lại</button></a>

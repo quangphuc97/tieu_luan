@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLichTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLichTable extends Migration
      */
     public function up()
     {
-        Schema::create('lich', function (Blueprint $table) {
-            $table->integer('id',true,true);
+        Schema::create('events', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->string('color');
             $table->integer('ma_lop')->unsigned()->nullable();
-            $table->dateTime('bat_dau');
-            $table->dateTime('ket_thuc');
             $table->foreign('ma_lop')
                 ->references('ma_lop')->on('lop')
                 ->onDelete('cascade')
@@ -33,6 +35,6 @@ class CreateLichTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lich');
+        Schema::dropIfExists('events');
     }
 }
