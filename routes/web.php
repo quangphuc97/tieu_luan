@@ -14,7 +14,9 @@
 
 
 Auth::routes();
-
+Route::get('/', function(){
+    return view('front-end.index');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
@@ -25,16 +27,4 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('taikhoan/hocvien','HocVienController');
     Route::resource('giangday/lop','LopController');
     Route::resource('giangday/lich','LichController');
-//    Route::get('giangday/lich/addeventurl','LichController@display')->name('lich.addeventurl');
-//    Route::post('giangday/lich/addeventurl','LichController@guardar')->name('lich.addeventurl');
 });
-
-//Route::get('/phuc', function () {
-////  echo  asset('storage/photos/carot.jpg');
-////  echo File::size(asset('storage/photos/carot.jpg'));
-////    echo Storage::size('/photos/carot.jpg');
-////echo  Storage::url('photos/carot.jpg');
-////    echo Storage::size('carot.jpg');
-//    echo Storage::size('public/photos/caRot.jpeg');
-//   echo asset('storage/photos/caRot.jpeg');
-//});
