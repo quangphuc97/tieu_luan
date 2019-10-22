@@ -18,10 +18,10 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <!-- Menu toggle button -->           
+          <!-- Menu toggle button -->
           <!-- /.messages-menu -->
-          <!-- Notifications Menu -->         
-          <!-- Tasks Menu -->        
+          <!-- Notifications Menu -->
+          <!-- Tasks Menu -->
           <!-- User Account Menu -->
           <!-- <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

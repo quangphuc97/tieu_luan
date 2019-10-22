@@ -151,4 +151,12 @@ class SanPhamController extends Controller
         return redirect()->route('sanpham.index');
     }
 
+    public function loadLoai(Request $request){
+        $loai = LoaiSanPham::find($request->id);
+        $ds_sp = SanPham::where('ma_loai',$request->id)->paginate(5);
+     return view('front-end.san-pham.danhsach')
+         ->with('loai',$loai)
+         ->with('ds_sp',$ds_sp);
+    }
+
 }

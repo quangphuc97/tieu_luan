@@ -12,8 +12,10 @@
     <link rel="stylesheet" type="text/css" href="{{url('front-end')}}/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="{{url('front-end')}}/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="{{url('front-end')}}/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="{{url('css')}}/style.css">
     @yield('title')
     @yield('css')
+    @yield('custom-scripts')
 </head>
 <body>
 
@@ -29,7 +31,7 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Trang Chủ <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('trang-chu')}}">Trang Chủ <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -68,12 +70,29 @@
 
             <div class="navbar-collapse collapse w-50 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng ký</a>
+                 <?php
+                        use App\HocVien;
+                    $id_hoc_vien=  Session::get('id_hoc_vien');
+                    $hoc_vien = HocVien::find($id_hoc_vien);
+                  if (empty($id_hoc_vien)){
+                    echo '<li class="nav-item">
+                        <a class="nav-link" href="'.route('dang-ky').'">Đăng ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng nhập</a>
-                    </li>
+                        <a class="nav-link" href="'.route('dang-nhap').'">Đăng nhập</a>
+                    </li>';}
+                    else {
+                    echo   ' <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    '.$hoc_vien->username.'
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="user">
+                            <a class="dropdown-item" href="#">Tài Khoản</a>
+                            <a class="dropdown-item" href="'.route('dang-xuat').'">Đăng xuất</a>
+                        </div>
+                    </li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>
@@ -82,8 +101,9 @@
     <!-- Menu -->
 
     <!-- Home -->
-    @yield('main-content')
-
+    <div class="main">
+        @yield('main-content')
+    </div>
 
     <!-- Footer -->
 

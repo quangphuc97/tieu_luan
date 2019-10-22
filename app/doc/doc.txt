@@ -1,0 +1,6 @@
+tao bang 
+php artisan make:migration create_loaisanpham_table
+cap nhap
+php artisan migrate
+tao model
+php artisan make:model Flight --migration
