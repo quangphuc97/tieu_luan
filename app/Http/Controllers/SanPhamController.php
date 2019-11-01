@@ -152,11 +152,27 @@ class SanPhamController extends Controller
     }
 
     public function loadLoai(Request $request){
-        $loai = LoaiSanPham::find($request->id);
-        $ds_sp = SanPham::where('ma_loai',$request->id)->paginate(5);
-     return view('front-end.san-pham.danhsach')
-         ->with('loai',$loai)
-         ->with('ds_sp',$ds_sp);
+        if (isset($request->id)){
+            $loai = LoaiSanPham::find($request->id);
+            $ds_sp = SanPham::where('ma_loai',$request->id)->paginate(5);
+            return view('front-end.san-pham.danhsach')
+                ->with('loai',$loai)
+                ->with('ds_sp',$ds_sp);
+
+        }
+        else {
+            $ds_sp = SanPham::paginate(5);
+            return view('front-end.san-pham.danhsach')
+                ->with('ds_sp',$ds_sp);
+        }
+
+
+    }
+
+    public function loadSanPham(Request $request){
+        $san_pham =SanPham::find($request->id);
+        return view('front-end.san-pham.load')
+            ->with('san_pham',$san_pham);
     }
 
 }

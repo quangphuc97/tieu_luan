@@ -84,10 +84,10 @@
                         foreach ($ds_san_pham as $san_pham)
                         {
                             echo '     <div class="product">
-                            <div class="product_image"><img src="'.asset('storage/photos/' . $san_pham->anh_dai_dien).'" alt=""></div>
-                            <div class="product_extra product_sale"><a href="categories.html">'.$san_pham->loaisanpham->ten_loai.'</a></div>
+                            <div class="product_image"><a href="'.route('load-san-pham',['id'=>$san_pham->ma_san_pham]).'"><img src="'.asset('storage/photos/' . $san_pham->anh_dai_dien).'" alt=""></a></div>
+                            <div class="product_extra product_sale"><a href="'.url('/loaisanpham/?id=').$san_pham->loaisanpham->ma_loai.'">'.$san_pham->loaisanpham->ten_loai.'</a></div>
                             <div class="product_content">
-                                <div class="product_title"><a href="product.html">'.$san_pham->ten_san_pham.'</a></div>
+                                <div class="product_title"><a href="'.route('load-san-pham',['id'=>$san_pham->ma_san_pham]).'">'.$san_pham->ten_san_pham.'</a></div>
                                 <div class="product_price">'.$san_pham->gia.' VND</div>
                             </div>
                         </div>';

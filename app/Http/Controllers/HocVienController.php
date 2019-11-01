@@ -156,4 +156,48 @@ class HocVienController extends Controller
            return redirect()->route('dang-nhap');
        }
     }
+
+    public function viewChinhSua(Request $request){
+        if(empty(Session::get('id_hoc_vien')))
+        {
+            $request->session()->put('url', route('chinh-sua'));
+        return redirect()->route('dang-nhap');
+        }
+        else {
+            $hoc_vien = HocVien::find(Session::get('id_hoc_vien'));
+            return view('front-end.nguoi-dung.chinh-sua')
+                ->with('hoc_vien',$hoc_vien);
+        }
+    }
+
+    public function updateInfo(Request $request){
+
+        $hoc_vien = HocVien::find(Session::get('id_hoc_vien'));
+        $hoc_vien->ho_ten= $request->ho_ten;
+        $hoc_vien->dia_chi= $request->dia_chi;
+        $hoc_vien->sdt= $request->sdt;
+        $hoc_vien->email= $request->email;
+        $hoc_vien->save();
+        Session::flash('alert-info', 'Thay đổi thành công!');
+        return view('front-end.nguoi-dung.chinh-sua')
+            ->with('hoc_vien',$hoc_vien);
+    }
+
+    public function updatePassword(Request $request){
+
+        $hoc_vien = HocVien::find(Session::get('id_hoc_vien'));
+        if($hoc_vien->password==$request->password_cu){
+            $hoc_vien->password= $request->password;
+            $hoc_vien->save();
+            Session::flash('alert-info', 'Thay đổi thành công!');
+            return view('front-end.nguoi-dung.chinh-sua')
+                ->with('hoc_vien',$hoc_vien);
+        }
+        else {
+            Session::flash('alert-danger', 'Sai password');
+            return view('front-end.nguoi-dung.chinh-sua')
+                ->with('hoc_vien',$hoc_vien);
+        }
+
+    }
 }

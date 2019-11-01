@@ -44,9 +44,10 @@
                             $ds_loai = LoaiSanPham::all();
                             foreach ($ds_loai as $loai )
                                 {
-                                    echo '<a class="dropdown-item" href="#">'.$loai->ten_loai.'</a>';
+                                    echo '<a class="dropdown-item" href="'.url('/loaisanpham').'?id='.$loai->ma_loai.'">'.$loai->ten_loai.'</a>';
                                 }
                             ?>
+                          <a class="dropdown-item" href="{{url('/loaisanpham')}}">Tất cả</a>;
                         </div>
                     </li>
 
@@ -69,7 +70,7 @@
             </div>
 
             <div class="navbar-collapse collapse w-50 order-3 dual-collapse2">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" style="padding-right: 30%;">
                  <?php
                         use App\HocVien;
                     $id_hoc_vien=  Session::get('id_hoc_vien');
@@ -87,7 +88,7 @@
                     '.$hoc_vien->username.'
                         </a>
                         <div class="dropdown-menu" aria-labelledby="user">
-                            <a class="dropdown-item" href="#">Tài Khoản</a>
+                            <a class="dropdown-item" href="'.route('chinh-sua').'">Tài Khoản</a>
                             <a class="dropdown-item" href="'.route('dang-xuat').'">Đăng xuất</a>
                         </div>
                     </li>';
@@ -146,6 +147,7 @@
 <script src="{{url('front-end')}}/plugins/easing/easing.js"></script>
 <script src="{{url('front-end')}}/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="{{url('front-end')}}/js/custom.js"></script>
+<script src="{{url('front-end')}}/js/product.js"></script>
 </body>
 </html>
 <style>

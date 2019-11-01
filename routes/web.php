@@ -31,7 +31,11 @@ Route::get('/dangxuat', function(){
     return redirect()->intended('/');
 })->name('dang-xuat');
 
-Route::get('/loaisanpham/{id}', 'SanPhamController@loadLoai');
+Route::get('/loaisanpham', 'SanPhamController@loadLoai');
+Route::get('/chinh-sua', 'HocVienController@viewChinhSua')->name('chinh-sua');
+Route::post('/chinh-sua', 'HocVienController@updateInfo')->name('chinh-sua');
+Route::post('/chinh-sua-pass', 'HocVienController@updatePassword')->name('chinh-sua-pass');
+Route::get('/sanpham/{id}', 'SanPhamController@loadSanPham')->name('load-san-pham');
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/danhsachloai','LoaiSanPhamController');
     Route::resource('thongbao','ThongBaoController');
