@@ -18,58 +18,64 @@
 <div class="container">
     <form method="post" action="{{route('dang-ky-hoc',['ma_lop'=>$lop->ma_lop])}}" enctype="multipart/form-data">
             {{csrf_field()}}
-    <div class="row">
-        <div class="col-md-3">
-            <label>Lớp:</label>
-        </div>
-        <div class="col-md-2">
-            <div class="noi-dung">{{$lop->ten_lop}}</div>
-        </div>
-    </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Lớp:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="noi-dung">{{$lop->ten_lop}}</div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <label>Giáo viên giảng dạy:</label>
-        </div>
-        <div class="col-md-2">
-            <div class="noi-dung">{{$lop->giaovien->ho_ten}}</div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Giáo viên giảng dạy:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="noi-dung">{{$lop->giaovien->ho_ten}}</div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <label>Trạng thái lớp</label>
-        </div>
-        <div class="col-md-2">
-            <div class="noi-dung">{{$lop->trang_thai}}</div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Trạng thái lớp</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="noi-dung">{{$lop->trang_thai}}</div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <label>Sỉ số</label>
-        </div>
-        <div class="col-md-2">
-            <div class="noi-dung">{{$lop->si_so}}</div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Sỉ số</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="noi-dung">{{$lop->si_so}}</div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <label>Số lượng còn lại</label>
-        </div>
-        <div class="col-md-2">
-            <div class="noi-dung">{{$so_luong_con_lai}}</div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Số lượng còn lại</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="noi-dung">{{$so_luong_con_lai}}</div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                <div class="row">
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="{{ asset('storage/photos/' . $lop->giaovien->anh_dai_dien) }}" class="avatar img-circle img-thumbnail" id="blah" alt="anh_dai_dien">
+            </div>
         </div>
-    </div>
     </form>
-    </div>
 </div>
 @endsection
 

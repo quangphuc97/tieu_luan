@@ -60,7 +60,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Thông báo</a>
+                        <a class="nav-link" href="{{route('giao-vien-dang-nhap')}}">Dành cho giáo viên</a>
                     </li>
 
                 </ul>
@@ -71,9 +71,12 @@
                 <ul class="navbar-nav ml-auto" style="padding-right: 30%;">
                  <?php
                         use App\HocVien;
+                        use App\GiaoVien;
+                        $id_giao_vien= Session::get('id_giao_vien');
+                        $giao_vien = GiaoVien::find($id_giao_vien);
                     $id_hoc_vien=  Session::get('id_hoc_vien');
                     $hoc_vien = HocVien::find($id_hoc_vien);
-                  if (empty($id_hoc_vien)){
+                  if (empty($id_hoc_vien)&&empty($id_giao_vien)){
                     echo '<li class="nav-item">
                         <a class="nav-link" href="'.route('dang-ky').'">Đăng ký</a>
                     </li>
@@ -81,6 +84,19 @@
                         <a class="nav-link" href="'.route('dang-nhap').'">Đăng nhập</a>
                     </li>';}
                     else {
+                      if(!empty($id_giao_vien)){
+                          echo   ' <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    '.$giao_vien->username.'
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="user">
+                            <a class="dropdown-item" href="'.route('chinh-sua-giao-vien').'">Tài Khoản</a>
+                             <a class="dropdown-item" href="'.route('lichday').'?id='.$giao_vien->id_giao_vien.'">Lịch dạy</a>
+                            <a class="dropdown-item" href="'.route('dang-xuat').'">Đăng xuất</a>
+                        </div>
+                    </li>';
+                      }
+                      else {
                     echo   ' <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     '.$hoc_vien->username.'
@@ -91,6 +107,7 @@
                             <a class="dropdown-item" href="'.route('dang-xuat').'">Đăng xuất</a>
                         </div>
                     </li>';
+                      }
                     }
                     ?>
                 </ul>

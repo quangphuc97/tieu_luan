@@ -11,4 +11,8 @@ class GiaoVien extends Model
     protected $primaryKey = 'id_giao_vien';
     protected $guarded = ['id_giao_vien'];
     protected $fillable     = ['id_giao_vien','anh_dai_dien','username','password','ho_ten','dia_chi','sdt','email'];
+    public function lop()
+    {
+        return $this->hasMany('App\Lop', 'id_giao_vien', 'id_giao_vien');
+    }
 }

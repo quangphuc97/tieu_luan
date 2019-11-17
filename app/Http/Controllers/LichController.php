@@ -7,12 +7,15 @@
  */
 
 namespace App\Http\Controllers;
+use App\GiaoVien;
 use App\Hoc;
 use Illuminate\Http\Request;
 use Calendar;
 use Session;
 use App\Lop;
 use App\Event;
+use Illuminate\Support\Arr;
+use function Sodium\add;
 
 class LichController extends Controller
 {
@@ -176,5 +179,39 @@ class LichController extends Controller
         }
 
     }
-
+    public function showLichDay(Request $request)
+    {
+        $giao_vien = GiaoVien::find(Session::get('id_giao_vien'));
+        $ma_lop = Array();
+        foreach ($giao_vien->lop as $item)
+        {
+            $ma_lop[]=$item->ma_lop;
+        }
+        $data = Event::whereIn('ma_lop',$ma_lop)->get();
+        if($data->count()) {
+            foreach ($data as $key => $value) {
+                $events[] = Calendar::event(
+                    $value->title,
+                    true,
+                    new \DateTime($value->start_date),
+                    new \DateTime($value->end_date.' +1 day'),
+                    null,
+                    // Add color and link on event
+                    [
+                        'color' => $value->color,
+                        'url' =>route('danhsachlopday',['id'=>$value->ma_lop]),
+                    ]
+                );
+            }
+        }
+        $calendar = Calendar::addEvents($events);
+        return view('front-end.lich.index')->with('calendar', $calendar)->with('events',$events);
+    }
+    public function danhsachlop(Request $request){
+        $lop = Lop::find($request->id);
+        $si_so= Hoc::where('ma_lop',$request->id)->count();
+        return view ('front-end.lich.danhsachlop')
+            ->with('si_so',$si_so)
+            ->with("lop",$lop);
+    }
 }

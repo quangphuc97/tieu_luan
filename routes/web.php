@@ -30,13 +30,23 @@ Route::get('/dangxuat', function(){
     Request::session()->flush();
     return redirect()->intended('/');
 })->name('dang-xuat');
+Route::get('/giaovien/dangnhap', function(){
+    return view('front-end.giao-vien.dang-nhap');
+})->name('giao-vien-dang-nhap');
+Route::post('/giaovien/dangnhap', 'GiaoVienController@dangnhap')->name('giao-vien-dang-nhap');
+
 
 Route::get('/loaisanpham', 'SanPhamController@loadLoai');
 Route::get('/chinh-sua', 'HocVienController@viewChinhSua')->name('chinh-sua');
+Route::get('/chinh-sua-giao-vien', 'GiaoVienController@viewChinhSua')->name('chinh-sua-giao-vien');
+Route::post('/chinh-sua-giao-vien', 'GiaoVienController@updateInfo')->name('chinh-sua-giao-vien');
 Route::post('/chinh-sua', 'HocVienController@updateInfo')->name('chinh-sua');
 Route::post('/chinh-sua-pass', 'HocVienController@updatePassword')->name('chinh-sua-pass');
+Route::post('/chinh-sua-pass-giao-vien', 'GiaoVienController@updatePassword')->name('chinh-sua-pass-giao-vien');
 Route::get('/sanpham/{id}', 'SanPhamController@loadSanPham')->name('load-san-pham');
 Route::get('/lichhoc', 'LichController@showCalendar')->name('lichhoc');
+Route::get('/lichday', 'LichController@showlichday')->name('lichday');
+Route::get('/danhsachlopday/{id}', 'LichController@danhsachlop')->name('danhsachlopday');
 Route::get('/dangkyhoc/{id}', 'DangKyHocController@dangKyHoc')->name("dang-ky-hoc");
 Route::post('/dangkyhoc/{ma_lop}', 'DangKyHocController@store')->name("dang-ky-hoc");
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
