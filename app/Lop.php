@@ -26,9 +26,9 @@ class Lop extends Model
         return $this->belongsTo('App\GiaoVien','id_giao_vien','id_giao_vien');
     }
 
-    public function hocvien()
+    public function hoc()
     {
-        return $this->hasMany('App\HocVien', 'ma_lop', 'ma_lop');
+        return $this->hasMany('App\Hoc', 'ma_lop', 'ma_lop');
     }
 
     public function lich()

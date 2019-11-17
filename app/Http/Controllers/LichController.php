@@ -7,6 +7,7 @@
  */
 
 namespace App\Http\Controllers;
+use App\Hoc;
 use Illuminate\Http\Request;
 use Calendar;
 use Session;
@@ -30,6 +31,7 @@ class LichController extends Controller
                     // Add color and link on event
                     [
                         'color' => $value->color,
+                        'url'=>route('danhsachlop').'?id='.$value->ma_lop,
                     ]
                 );
             }
@@ -116,7 +118,7 @@ class LichController extends Controller
     private function createEvent(Lop $lop, $color, $start_date ){
       for ($i=0;$i<=3;$i++){
             $events= new Event();
-        $events->title = $lop->ten_lop."||".date("H:i:s",strtotime($start_date));
+        $events->title = $lop->ten_lop."||".date("H:i",strtotime($start_date));
         $events->color  =$color;
         $events->start_date = $start_date;
         $events->end_date = $start_date;
@@ -124,6 +126,55 @@ class LichController extends Controller
         $start_date= date('Y-m-d H:i:s', strtotime($start_date. ' + 7 days'));
         $events-> save();
         }
+    }
+
+    public function showCalendar(Request $request)
+    {
+        $events = [];
+        if (empty($request->id)){
+            $data = Event::all();
+            if($data->count()) {
+                foreach ($data as $key => $value) {
+                    $events[] = Calendar::event(
+                        $value->title,
+                        true,
+                        new \DateTime($value->start_date),
+                        new \DateTime($value->end_date.' +1 day'),
+                        null,
+                        // Add color and link on event
+                        [
+                            'color' => $value->color,
+                            'url' =>route('dang-ky-hoc',['id'=>$value->ma_lop]),
+                        ]
+                    );
+                }
+            }
+            $calendar = Calendar::addEvents($events);
+            return view('front-end.lich.index')->with('calendar', $calendar)->with('events',$events);
+        }
+        else {
+            $hoc = Hoc::where('id_hoc_vien',$request->id)->first();
+            $data = Event::where('ma_lop',$hoc['ma_lop'])->get();
+            if($data->count()) {
+                foreach ($data as $key => $value) {
+                    $events[] = Calendar::event(
+                        $value->title,
+                        true,
+                        new \DateTime($value->start_date),
+                        new \DateTime($value->end_date.' +1 day'),
+                        null,
+                        // Add color and link on event
+                        [
+                            'color' => $value->color,
+                            'url' =>route('dang-ky-hoc',['id'=>$value->ma_lop]),
+                        ]
+                    );
+                }
+            }
+            $calendar = Calendar::addEvents($events);
+            return view('front-end.lich.index')->with('calendar', $calendar)->with('events',$events);
+        }
 
     }
+
 }

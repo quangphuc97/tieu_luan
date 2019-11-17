@@ -1045,6 +1045,7 @@ section
 	right: 1px;
 	height: 100%;
 	width: 29px;
+	padding-left: 10px;
 }
 .quantity_inc, 
 .quantity_dec

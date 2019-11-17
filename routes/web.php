@@ -36,6 +36,9 @@ Route::get('/chinh-sua', 'HocVienController@viewChinhSua')->name('chinh-sua');
 Route::post('/chinh-sua', 'HocVienController@updateInfo')->name('chinh-sua');
 Route::post('/chinh-sua-pass', 'HocVienController@updatePassword')->name('chinh-sua-pass');
 Route::get('/sanpham/{id}', 'SanPhamController@loadSanPham')->name('load-san-pham');
+Route::get('/lichhoc', 'LichController@showCalendar')->name('lichhoc');
+Route::get('/dangkyhoc/{id}', 'DangKyHocController@dangKyHoc')->name("dang-ky-hoc");
+Route::post('/dangkyhoc/{ma_lop}', 'DangKyHocController@store')->name("dang-ky-hoc");
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/danhsachloai','LoaiSanPhamController');
     Route::resource('thongbao','ThongBaoController');
@@ -44,4 +47,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('taikhoan/hocvien','HocVienController');
     Route::resource('giangday/lop','LopController');
     Route::resource('giangday/lich','LichController');
+    Route::get('/danhsachlop', 'DangKyHocController@danhsachlop')->name('danhsachlop');
+    Route::post('/xoahoc/{id}', 'DangKyHocController@destroy')->name('xoahoc');
+    Route::get('/duyet/{id}', 'DangKyHocController@duyet')->name('duyethoc');
+
 });

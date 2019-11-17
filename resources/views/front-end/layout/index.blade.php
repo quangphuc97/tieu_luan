@@ -13,6 +13,10 @@
     <link rel="stylesheet" type="text/css" href="{{url('front-end')}}/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="{{url('front-end')}}/styles/responsive.css">
     <link rel="stylesheet" type="text/css" href="{{url('css')}}/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
     @yield('title')
     @yield('css')
     @yield('custom-scripts')
@@ -47,18 +51,12 @@
                                     echo '<a class="dropdown-item" href="'.url('/loaisanpham').'?id='.$loai->ma_loai.'">'.$loai->ten_loai.'</a>';
                                 }
                             ?>
-                          <a class="dropdown-item" href="{{url('/loaisanpham')}}">Tất cả</a>;
+                          <a class="dropdown-item" href="{{url('/loaisanpham')}}">Tất cả</a>
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="lich_day" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Lịch Dạy
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="lich_day">
-                            <a class="dropdown-item" href="#">Học viên</a>
-                            <a class="dropdown-item" href="#">Giảng viên</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('lichhoc')}}">Lịch học</a>
                     </li>
 
                     <li class="nav-item">
@@ -89,6 +87,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="user">
                             <a class="dropdown-item" href="'.route('chinh-sua').'">Tài Khoản</a>
+                             <a class="dropdown-item" href="'.route('lichhoc').'?id='.$hoc_vien->id_hoc_vien.'">Lịch học</a>
                             <a class="dropdown-item" href="'.route('dang-xuat').'">Đăng xuất</a>
                         </div>
                     </li>';
@@ -134,7 +133,7 @@
     </footer>
 </div>
 
-<script src="{{url('front-end')}}/js/jquery-3.2.1.min.js"></script>
+{{--<script src="{{url('front-end')}}/js/jquery-3.2.1.min.js"></script>--}}
 <script src="{{url('front-end')}}/styles/bootstrap4/popper.js"></script>
 <script src="{{url('front-end')}}/styles/bootstrap4/bootstrap.min.js"></script>
 <script src="{{url('front-end')}}/plugins/greensock/TweenMax.min.js"></script>
