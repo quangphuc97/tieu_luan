@@ -49,6 +49,9 @@ Route::get('/lichday', 'LichController@showlichday')->name('lichday');
 Route::get('/danhsachlopday/{id}', 'LichController@danhsachlop')->name('danhsachlopday');
 Route::get('/dangkyhoc/{id}', 'DangKyHocController@dangKyHoc')->name("dang-ky-hoc");
 Route::post('/dangkyhoc/{ma_lop}', 'DangKyHocController@store')->name("dang-ky-hoc");
+
+Route::get('/thongbao', 'ThongBaoController@frontEndIndex')->name("thong-bao-index");
+Route::get('/thongbao/load/{id}', 'ThongBaoController@frontEndLoad')->name("thong-bao-load");
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/danhsachloai','LoaiSanPhamController');
     Route::resource('thongbao','ThongBaoController');

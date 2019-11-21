@@ -93,4 +93,16 @@ class ThongBaoController extends Controller
         return redirect()->route('thongbao.index');
     }
 
+    public function frontEndIndex(){
+        $ds_thong_bao = ThongBao::orderBy('bat_dau', 'desc')->paginate(5);
+        return view('front-end.thong-bao.index')
+            ->with('ds_thong_bao', $ds_thong_bao);
+    }
+
+    public function frontEndload (Request $request){
+        $data= ThongBao::find($request->id);
+        return view('front-end.thong-bao.load')
+            ->with('data', $data);
+    }
+
 }

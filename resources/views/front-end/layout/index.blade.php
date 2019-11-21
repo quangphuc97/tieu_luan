@@ -40,7 +40,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sản Phẩm
+                            Sản phẩm
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <?php
@@ -60,9 +60,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('giao-vien-dang-nhap')}}">Dành cho giáo viên</a>
+                        <a class="nav-link" href="{{route('giao-vien-dang-nhap')}}">Giáo viên</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('thong-bao-index')}}">Thông báo</a>
+                    </li>
                 </ul>
             </div>
             </div>
@@ -163,7 +165,7 @@
 <script src="{{url('front-end')}}/plugins/easing/easing.js"></script>
 <script src="{{url('front-end')}}/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="{{url('front-end')}}/js/custom.js"></script>
-<script src="{{url('front-end')}}/js/product.js"></script>
+
 </body>
 </html>
 <style>

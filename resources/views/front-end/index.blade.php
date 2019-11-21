@@ -126,7 +126,7 @@
                         ?>
                             <div class="newsletter_content text-center" style="margin-top: -100px">
                             <div class="newsletter_form_container">
-                                <a href=""><button class="newsletter_button trans_200"><span>Xem tất cả</span></button></a>
+                                <a href="{{route('thong-bao-index')}}"><button class="newsletter_button trans_200"><span>Xem tất cả</span></button></a>
                             </div>
                             </div>
 
@@ -136,3 +136,11 @@
     </div>
 
 @endsection
+<style>
+    .newsletter_text{
+        white-space: nowrap;
+        width: 750px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
